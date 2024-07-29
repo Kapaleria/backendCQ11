@@ -1,6 +1,6 @@
 const express = require ('express');
 const mongoose = require('mongoose');
-require(dotenv/config)
+require('dotenv/config')
 
 const app = express(); //creating an express app
 // const port = 5000
@@ -21,4 +21,4 @@ mongoose.connect(process.env.MONGODBLINK,
 })
 
 
-app.listen(process.env.PORT, ()=>{console.log(`Connected on port ${port}`)})
+app.listen(process.env.PORT, ()=>{console.log(`Connected on port ${process.env.PORT}`)})
