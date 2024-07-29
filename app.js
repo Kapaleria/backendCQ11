@@ -1,15 +1,16 @@
 const express = require ('express');
 const mongoose = require('mongoose');
+require(dotenv/config)
 
-const app = express();
-const port = 5000
+const app = express(); //creating an express app
+// const port = 5000
 
 app.get('/', (req, res) =>{
   res.send('We are the Code Queens')
 })
 
 //CONNECT TO THE DATABASE
-mongoose.connect("mongodb+srv://CodeQueen:CodeQueen@cluster0.crbjiye.mongodb.net/?retryWrites=true&w=majority&appName=Cluster0",
+mongoose.connect(process.env.MONGODBLINK,
   {useNewUrlParser:true}
   // parsing error
 ).then(
@@ -20,4 +21,4 @@ mongoose.connect("mongodb+srv://CodeQueen:CodeQueen@cluster0.crbjiye.mongodb.net
 })
 
 
-app.listen(port, ()=>{console.log(`Connected on port ${port}`)})
+app.listen(process.env.PORT, ()=>{console.log(`Connected on port ${port}`)})
