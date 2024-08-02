@@ -12,11 +12,6 @@ app.use('/api',routes)
 
 // app.use(express.json())
 
-app.get('/', (req, res) =>{ 
-  res.send('We are the Code Queens')
-  
-})
-
 //CONNECT TO THE DATABASE
 mongoose.connect(process.env.MONGODBLINK)
 .then(()=>{console.log('Connected to the DB')})
