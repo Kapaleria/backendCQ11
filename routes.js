@@ -47,6 +47,16 @@ router.post('/posts', async(req,res)=>{
          }
 })
 
+router.delete('/deletePost/:postID', async(req,res)=>{
+    try{
+        const deletedPost = await Posts.remove({_id:req.params.postID})
+        res.json(deletedPost)
+    }
+    catch(err){
+        res.json({messg:err})
+    }
+})
+
 /**
  * router.%method%('%path%', async(req,res)=>{
  *         
