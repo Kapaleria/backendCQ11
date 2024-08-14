@@ -27,9 +27,8 @@ router.get('/posts/:postID', async(req,res)=>{
         res.json({mssg:err})
     }
     
-
-
 })
+
 // sending data to the database
 router.post('/posts', async(req,res)=>{
          const post = new Posts({
@@ -49,11 +48,13 @@ router.post('/posts', async(req,res)=>{
 
 router.delete('/deletePost/:postID', async(req,res)=>{
     try{
-        const deletedPost = await Posts.remove({_id:req.params.postID})
+         const deletedPost = await Posts.deleteOne({_id:req.params.postID})
+        //  const deletedPost = await Posts.remove(req.params.postID)
         res.json(deletedPost)
     }
     catch(err){
-        res.json({messg:err})
+        console.log(err)
+        res.json({mssg:err.message})
     }
 })
 
