@@ -5,12 +5,15 @@ const Posts = require('./schema')
 
             //CRUD
 //get method (all posts)
-router.get('/posts', (req,res)=>{
-    // res.send('Posts page')
+router.get('/posts', async(req,res)=>{
+   try{
+        const allPosts = await Posts.find();
+        res.json(allPosts)
+   }
 
-    res.json(
-        {msg:'GET all posts'}
-    )
+   catch(err){
+    res.json({mssg: err})
+   }
 })
 
 router.get('/posts/:id', async(req,res)=>{
@@ -18,7 +21,7 @@ router.get('/posts/:id', async(req,res)=>{
         {msg:'GET a specific post'}
     )
 })
-
+// sending data to the database
 router.post('/posts', async(req,res)=>{
          const post = new Posts({
             postTitle :req.body.postTitle,
@@ -34,5 +37,13 @@ router.post('/posts', async(req,res)=>{
             res.json({msg:err})
          }
 })
+
+/**
+ * router.%method%('%path%', async(req,res)=>{
+ *         
+ * try{}
+ * catch{}
+ * })
+ */
 
 module.exports= router
