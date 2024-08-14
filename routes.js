@@ -16,10 +16,19 @@ router.get('/posts', async(req,res)=>{
    }
 })
 
-router.get('/posts/:id', async(req,res)=>{
-    res.json(
-        {msg:'GET a specific post'}
-    )
+router.get('/posts/:postID', async(req,res)=>{
+    try{
+        const onePost = await Posts.findById(req.params.postID)
+    // params = parameters
+    res.json(onePost)
+    }
+
+    catch(err){
+        res.json({mssg:err})
+    }
+    
+
+
 })
 // sending data to the database
 router.post('/posts', async(req,res)=>{
